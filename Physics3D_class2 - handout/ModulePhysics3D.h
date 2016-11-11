@@ -5,6 +5,11 @@
 #include "Primitive.h"
 
 // TODO 1: Add Bullet common include btBulletDynamicsCommon.h
+#include "Bullet/include/btBulletDynamicsCommon.h"
+
+//World macros
+#define GRAVITY {0, -9.81f, 0}
+
 
 class DebugDrawer;
 
@@ -25,9 +30,17 @@ private:
 	bool debug;
 
 	DebugDrawer* debug_draw;
+
+
+	//World creation propierties
+	btDiscreteDynamicsWorld* world;
+	btDispatcher* dispatcher;
+	btBroadphaseInterface* paircache;
+	btConstraintSolver* constraintSolver;
+	btCollisionConfiguration* collisionConfiguration;
 };
 
-/*
+
 // Uncomment the debug Drawer once you finish TODO 4
 class DebugDrawer : public btIDebugDraw
 {
@@ -46,4 +59,3 @@ public:
 	Line line;
 	Primitive point;
 };
-*/
