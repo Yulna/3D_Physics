@@ -17,11 +17,15 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
-	App->camera->LookAt(vec3(0, 0, 0));
+	App->camera->Move(vec3(1.0f, 7.0f, 0.0f));
+	App->camera->LookAt(vec3(1, 4, 1));
 
 	// TODO 3: create a sphere in the world with a primitive
 	// and create a physics body for it. Remember to render it in Update()
+
+	ball.SetPos(1, 4, 1);
+	b = App->physics->AddBody(ball);
+
 
 	// TODO 5: Add this module to the list of collision listeners
 
@@ -36,6 +40,11 @@ bool ModuleSceneIntro::CleanUp()
 	return true;
 }
 
+void ModuleSceneIntro::OnCollision(PhysBody3D * body1, PhysBody3D * body2)
+{
+
+}
+
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
@@ -43,8 +52,12 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	
 	// TODO 4: update the transform of the shape to meet the
 	// physics one
+	b->GetTransform(&ball.transform);
+
+	ball.Render();
 
 	return UPDATE_CONTINUE;
 }

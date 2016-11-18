@@ -20,4 +20,5 @@ public:
 
 public:
 	PhysBody3D* b;
+	Sphere ball;
 };
