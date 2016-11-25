@@ -24,10 +24,16 @@ bool ModuleSceneIntro::Start()
 	
 	for (int i = 0; i < MAX_SNAKE; i++)
 	{
-	
+		s_snake[i].radius = i;
+		s_snake[i].color = Color(1.0f, 0.0f, 0.0f);
+		s_snake[i].SetPos(0, 5,i*i);
+		pb_snake[i] = App->physics->AddBody(s_snake[i]);
 
+		if (i > 0)
+			App->physics->Point2PointConstraint(pb_snake[i], pb_snake[i - 1], btVector3(0, 0, i+1), btVector3(0, 0, -(i+1)));
 	}
-	
+
+	/*
 	Sphere s(1);
 	s.SetPos(0, 0, 0);
 	testA = App->physics->AddBody(s);
@@ -35,7 +41,7 @@ bool ModuleSceneIntro::Start()
 	testB = App->physics->AddBody(s);
 
 	App->physics->Point2PointConstraint(testA, testB, btVector3(0,0,0), btVector3(0,0,0));
-
+	*/
 
 
 
@@ -60,13 +66,14 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
-	/* Uncomment when ready
+	// Uncomment when ready
 	for(int i = 0; i < MAX_SNAKE; ++i)
 	{
 		pb_snake[i]->GetTransform(&(s_snake[i].transform));
 		s_snake[i].Render();
 	}
 
+	/*
 	for(int i = 0; i < MAX_SNAKE; ++i)
 	{
 		pb_snake2[i]->GetTransform(&(s_snake2[i].transform));
