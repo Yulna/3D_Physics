@@ -61,11 +61,19 @@ update_status ModuleCamera3D::Update(float dt)
 	Position += newPos;
 	Reference += newPos;*/
 
-	//Position = App->player->vehicle;
+
+	btVector3 temp =  App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin();
+	Position.x = temp.getX();
+	Position.y = temp.getY();
+	Position.z = temp.getZ();
+
+	Position.x += 0;
+	Position.y += 2.5;
+	Position.z += 4;
 
 
 	// Mouse motion ----------------
-
+	/*
 	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 	{
 		int dx = -App->input->GetMouseXMotion();
@@ -100,6 +108,22 @@ update_status ModuleCamera3D::Update(float dt)
 
 		Position = Reference + Z * length(Position);
 	}
+	*/
+
+	/*
+	btQuaternion qtemp = App->player->vehicle->vehicle->getChassisWorldTransform().getRotation();
+	float angle = qtemp.getAngle();
+	float rX = qtemp.getX();
+	float rY = qtemp.getY();
+	float rZ = qtemp.getZ();
+
+	vec3 axis(qtemp.getAxis().getX(), qtemp.getAxis().getY(), qtemp.getAxis().getZ());
+	
+	X = rotate(X, angle, axis);
+	Y = rotate(Y, angle, axis);
+	Z = rotate(Z, angle, axis);
+	
+	*/
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
