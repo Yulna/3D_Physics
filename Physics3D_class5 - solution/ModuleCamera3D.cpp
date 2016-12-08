@@ -67,11 +67,7 @@ update_status ModuleCamera3D::Update(float dt)
 	Position.y = temp.getY() + 4;
 	Position.z = temp.getZ() + 6;
 
-	//Position.x += 0;
-	//Position.y += 4;
-	//Position.z -= 6;
-
-
+	
 	// Mouse motion ----------------
 	/*
 	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)

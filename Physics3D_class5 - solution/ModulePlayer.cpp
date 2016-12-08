@@ -110,6 +110,11 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
+void ModulePlayer::AddPoints(int x)
+{
+	points += x;
+}
+
 // Update: draw background
 update_status ModulePlayer::Update(float dt)
 {
@@ -150,7 +155,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	sprintf_s(title, "%.1f Km/h  %ipoints", vehicle->GetKmh(), points);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;

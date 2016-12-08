@@ -383,7 +383,7 @@ void DebugDrawer::reportErrorWarning(const char* warningString)
 
 void DebugDrawer::draw3dText(const btVector3& location, const char* textString)
 {
-	LOG("Bullet draw text: %s", textString);
+	LOG("Bullet draw text: %s", textString);	
 }
 
 void DebugDrawer::setDebugMode(int debugMode)
