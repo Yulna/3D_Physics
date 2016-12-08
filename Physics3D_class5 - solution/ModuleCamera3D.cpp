@@ -68,8 +68,8 @@ update_status ModuleCamera3D::Update(float dt)
 	Position.z = temp.getZ();
 
 	Position.x += 0;
-	Position.y += 2.5;
-	Position.z += 4;
+	Position.y += 4;
+	Position.z += 6;
 
 
 	// Mouse motion ----------------
@@ -110,7 +110,7 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 	*/
 
-	/*
+	
 	btQuaternion qtemp = App->player->vehicle->vehicle->getChassisWorldTransform().getRotation();
 	float angle = qtemp.getAngle();
 	float rX = qtemp.getX();
@@ -123,7 +123,7 @@ update_status ModuleCamera3D::Update(float dt)
 	Y = rotate(Y, angle, axis);
 	Z = rotate(Z, angle, axis);
 	
-	*/
+	
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
