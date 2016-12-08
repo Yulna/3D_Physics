@@ -64,12 +64,12 @@ update_status ModuleCamera3D::Update(float dt)
 
 	btVector3 temp =  App->player->vehicle->vehicle->getChassisWorldTransform().getOrigin();
 	Position.x = temp.getX();
-	Position.y = temp.getY();
-	Position.z = temp.getZ();
+	Position.y = temp.getY() + 4;
+	Position.z = temp.getZ() + 6;
 
-	Position.x += 0;
-	Position.y += 4;
-	Position.z += 6;
+	//Position.x += 0;
+	//Position.y += 4;
+	//Position.z -= 6;
 
 
 	// Mouse motion ----------------
@@ -113,15 +113,16 @@ update_status ModuleCamera3D::Update(float dt)
 	
 	btQuaternion qtemp = App->player->vehicle->vehicle->getChassisWorldTransform().getRotation();
 	float angle = qtemp.getAngle();
-	float rX = qtemp.getX();
-	float rY = qtemp.getY();
-	float rZ = qtemp.getZ();
+	float q0 = qtemp.getW();
+	float q1 = qtemp.getX();
+	float q2 = qtemp.getY();
+	float q3 = qtemp.getZ();
 
-	vec3 axis(qtemp.getAxis().getX(), qtemp.getAxis().getY(), qtemp.getAxis().getZ());
+	//vec3 axis(qtemp.getAxis().getX(), qtemp.getAxis().getY(), qtemp.getAxis().getZ());
 	
-	X = rotate(X, angle, axis);
-	Y = rotate(Y, angle, axis);
-	Z = rotate(Z, angle, axis);
+	X = vec3(q0*q0 + q1*q1 - q2*q2 - q3*q3, 2*q1*q2-2*q0*q3, 2*q1*q3+2*q0*q2);
+	Y = vec3(2*q1*q2+2*q0*q3, q0*q0 - q1*q1 + q2*q2 - q3*q3, 2*q2*q3-2*q0*q1);
+	Z = vec3(2*q1*q3-2*q0*q2, 2*q2*q3+2*q0*q1, q0*q0 - q1*q1 - q2*q2 + q3*q3);
 	
 	
 
